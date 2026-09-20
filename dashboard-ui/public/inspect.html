@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Frame Inspector</title>
+  <style>
+    body { font-family: monospace; background: #111; color: #eee; padding: 20px; }
+    #gallery { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .frame-card { background: #222; padding: 6px; border-radius: 6px; font-size: 11px; text-align: center; width: 260px; }
+    .frame-card img { width: 100%; height: auto; border-radius: 4px; display: block; }
+    button { background: #3b82f6; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-right: 8px; }
+  </style>
+</head>
+<body>
+  <h2>login page animation.mp4 - Frame by Frame Inspector</h2>
+  <div>
+    <button id="btnStart">Extract Key Frames (0.0s - 4.0s @ 0.1s step)</button>
+    <button id="btnAll">Extract Entire Video (0s - 18s @ 0.5s step)</button>
+    <span id="status">Ready</span>
+  </div>
+  <video id="v" src="/login%20page%20animation.mp4" style="display:none;" playsinline muted></video>
+  <canvas id="c" style="display:none;"></canvas>
+  <div id="gallery"></div>
+
+  <script>
+    const v = document.getElementById('v');
+    const c = document.getElementById('c');
+    const ctx = c.getContext('2d');
+    const gallery = document.getElementById('gallery');
+    const status = document.getElementById('status');
+    window.__FRAMES__ = [];
+
+    async function captureTime(time) {
+      return new Promise((resolve) => {
+        v.currentTime = time;
+        const onSeeked = () => {
+          v.removeEventListener('seeked', onSeeked);
+          c.width = v.videoWidth;
+          c.height = v.videoHeight;
+          ctx.drawImage(v, 0, 0, c.width, c.height);
+          const dataUrl = c.toDataURL('image/jpeg', 0.85);
+          resolve(dataUrl);
+        };
+        v.addEventListener('seeked', onSeeked);
+      });
+    }
+
+    async function extractRange(start, end, step) {
+      gallery.innerHTML = '';
+      window.__FRAMES__ = [];
+      v.pause();
+      for (let t = start; t <= end; t += step) {
+        status.innerText = `Seeking t=${t.toFixed(2)}s / ${end}s...`;
+        const dataUrl = await captureTime(t);
+        window.__FRAMES__.push({ time: t.toFixed(2), src: dataUrl });
+        const card = document.createElement('div');
+        card.className = 'frame-card';
+        card.innerHTML = `<img src="${dataUrl}"><div>t = ${t.toFixed(2)}s</div>`;
+        gallery.appendChild(card);
+      }
+      status.innerText = `Done! Captured ${window.__FRAMES__.length} frames.`;
+      window.__DONE__ = true;
+    }
+
+    document.getElementById('btnStart').onclick = () => extractRange(0, 4.0, 0.15);
+    document.getElementById('btnAll').onclick = () => extractRange(0, 18.0, 0.6);
+
+    // Auto extract first 3.5s automatically on load
+    v.onloadedmetadata = () => {
+      extractRange(0, 3.5, 0.15);
+    };
+  </script>
+</body>
+</html>

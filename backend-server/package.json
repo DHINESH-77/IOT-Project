@@ -1,0 +1,31 @@
+{
+  "name": "crivera-backend",
+  "version": "1.0.0",
+  "description": "CRIVERA Systems & Infrastructure - Backend API for Civic Welfare & ESP32 Kiosk",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node src/seed.js",
+    "import-all": "node src/import_all_schemes.js",
+    "check-db": "node src/test-connection.js"
+  },
+  "keywords": [
+    "crivera",
+    "welfare",
+    "schemes",
+    "esp32",
+    "iot"
+  ],
+  "author": "CRIVERA Core Team",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^8.9.5"
+  }
+}
