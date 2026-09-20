@@ -1,0 +1,621 @@
+import React, { useState, useRef } from 'react';
+import AdminLoginModal from '../components/AdminLoginModal';
+
+const schemesList = [
+  {
+    id: 'SCH-01',
+    category: 'agriculture',
+    titleEn: 'PM Kisan Samman Nidhi',
+    titleTa: 'கிசான் சம்மான் நிதி உதவி',
+    benefitEn: '₹6,000 / year',
+    benefitTa: 'ஆண்டுக்கு ₹6,000',
+    descEn: 'Direct DBT grant for small & marginal farmers holding cultivable land up to 2 hectares.',
+    descTa: '2 ஹெக்டேர் வரை நிலம் வைத்துள்ள விவசாயிகளுக்கு நேரடி வங்கி நிதி உதவி.',
+    tagEn: 'Direct Financial Grant',
+    tagTa: 'நேரடி நிதி உதவி',
+  },
+  {
+    id: 'SCH-02',
+    category: 'welfare',
+    titleEn: 'Women Livelihood Grant (Magalir Urimai)',
+    titleTa: 'மகளிர் உரிமை வாழ்வாதார உதவித்தொகை',
+    benefitEn: '₹1,000 / month',
+    benefitTa: 'மாதம் ₹1,000',
+    descEn: 'Monthly economic independence assistance credited directly to women family heads.',
+    descTa: 'குடும்பத் தலைவிகளின் மாதாந்திர நேரடி வங்கி வரவு உதவித்தொகை.',
+    tagEn: 'Monthly Direct Benefit',
+    tagTa: 'மாதாந்திர உதவி',
+  },
+  {
+    id: 'SCH-03',
+    category: 'housing',
+    titleEn: 'Rural Pucca Housing Grant (PMAY-G)',
+    titleTa: 'ஊரக நிரந்தர குடியிருப்பு மானியம்',
+    benefitEn: '₹1,20,000 Grant',
+    benefitTa: '₹1,20,000 மானியம்',
+    descEn: 'Direct grant assistance to construct permanent concrete houses for rural households.',
+    descTa: 'கிராமப்புற ஏழை மக்களுக்கு நிரந்தர பக்கா வீடு கட்ட நேரடி நிதி உதவி.',
+    tagEn: 'Housing Grant',
+    tagTa: 'வீடமைப்பு மானியம்',
+  },
+  {
+    id: 'SCH-04',
+    category: 'education',
+    titleEn: 'Higher Education Empowerment Grant',
+    titleTa: 'உயர்கல்வி ஊக்கத்தொகை திட்டம்',
+    benefitEn: '₹1,000 / month',
+    benefitTa: 'மாதம் ₹1,000',
+    descEn: 'Monthly scholarship support throughout degree program for girl students.',
+    descTa: 'பட்டப்படிப்பு பயிலும் மாணவிகளுக்கு மாதாந்திர நேரடி கல்வி உதவித்தொகை.',
+    tagEn: 'Education Subsidy',
+    tagTa: 'கல்வி உதவி',
+  },
+  {
+    id: 'SCH-05',
+    category: 'agriculture',
+    titleEn: 'Solar Irrigation & Farm Power Grant',
+    titleTa: 'சூரியசக்தி பாசன மானியத் திட்டம்',
+    benefitEn: '100% Free Power & Subsidy',
+    benefitTa: 'முழு மானியம் & மின்சாரம்',
+    descEn: 'Clean continuous solar energy and uninterrupted power for rural farm irrigation.',
+    descTa: 'விவசாய பம்புசெட்டுகளுக்கு சூரியசக்தி மற்றும் தடையற்ற மின் விநியோகம்.',
+    tagEn: 'Energy Grant',
+    tagTa: 'மின்சார மானியம்',
+  },
+  {
+    id: 'SCH-06',
+    category: 'welfare',
+    titleEn: 'Senior Citizen Livelihood Support',
+    titleTa: 'முதியோர் சமூகப் பாதுகாப்பு ஓய்வூதியம்',
+    benefitEn: '₹1,200 / month',
+    benefitTa: 'மாதம் ₹1,200',
+    descEn: 'Direct monthly pension support for senior citizens with zero intermediary deduction.',
+    descTa: 'ஆதரவற்ற முதியோர்களுக்கு மாதாந்திர நேரடி சமூகப் பாதுகாப்பு ஓய்வூதியம்.',
+    tagEn: 'Social Security',
+    tagTa: 'சமூக பாதுகாப்பு',
+  },
+];
+
+const content = {
+  en: {
+    brandName: 'CRIVERA',
+    brandTagline: 'SYSTEMS & INFRASTRUCTURE',
+    nav: {
+      home: 'Home',
+      about: 'About',
+      schemes: 'Schemes',
+      contacts: 'Contacts',
+    },
+    adminBtn: 'Officer Sign In',
+    headline: 'Direct, dignified welfare delivery for every rural citizen.',
+    subheading: 'An intelligent, offline-resilient digital welfare platform eliminating paperwork barriers, middleman leakages, and operational downtime. Delivering instant verification, grant tracking, and scheme accessibility directly to grassroots doorsteps.',
+    primaryCta: 'Explore Welfare Schemes',
+    secondaryCta: 'Officer Portal',
+    quote: '"Empowering rural communities through transparent, accessible digital technology at every doorstep."',
+    quoteAuthor: '— CRIVERA PHILOSOPHY',
+    aboutModal: {
+      title: 'About CRIVERA Platform',
+      badge: 'Systems & Infrastructure',
+      desc: 'CRIVERA delivers robust, offline-resilient digital infrastructure engineered to bring transparent public benefit distribution to every grassroots community without dependency on volatile connectivity.',
+      pillars: [
+        {
+          title: 'Offline-First Resilience',
+          desc: 'Operates continuously during rural power outages or internet drops via local hardware synchronization.',
+          icon: 'offline_bolt',
+        },
+        {
+          title: 'Direct Benefit Transparency',
+          desc: 'Direct calculation of benefit entitlements and elimination of bureaucratic leakages.',
+          icon: 'currency_rupee',
+        },
+        {
+          title: 'Instant Hardware Attestation',
+          desc: 'Sub-second cryptographic verification and physical token tracking.',
+          icon: 'verified',
+        },
+      ],
+      closeBtn: 'Close Overview',
+    },
+    contactModal: {
+      title: 'Contact CRIVERA Platform',
+      badge: 'Systems & Infrastructure Support',
+      desc: 'Have questions about rural deployment, hardware telemetry, or welfare integrations? Get in touch directly with our engineering team.',
+      emailLabel: 'Direct Email',
+      emailVal: 'contact@crivera.systems',
+      phoneLabel: 'Helpline Desk',
+      phoneVal: '+91 800-425-7382 (Toll Free)',
+      locationLabel: 'Operations Hub',
+      locationVal: 'CRIVERA Systems Hub, Technology Sector',
+      sendMsgBtn: 'Send Inquiries',
+      closeBtn: 'Close Window',
+    },
+    schemesModal: {
+      title: 'Active Public Welfare Schemes',
+      badge: 'Verified Benefit Grants',
+      desc: 'Browse through active welfare schemes with verified grant amounts and eligibility criteria.',
+      closeBtn: 'Close Schemes',
+    },
+  },
+  ta: {
+    brandName: 'CRIVERA',
+    brandTagline: 'SYSTEMS & INFRASTRUCTURE',
+    nav: {
+      home: 'முகப்பு',
+      about: 'அமைப்பு பற்றி',
+      schemes: 'நலத்திட்டங்கள்',
+      contacts: 'தொடர்புக்கு',
+    },
+    adminBtn: 'அதிகாரி உள்நுழைவு',
+    headline: 'கிராமப்புற மக்களுக்கான நேரடி மற்றும் வெளிப்படையான நலச்சேவை.',
+    subheading: 'இடைத்தரகர்கள் இன்றி, ஆவண அலைச்சல்களை தவிர்த்து, கிராம பஞ்சாயத்து அளவில் அரசு நலத்திட்டங்கள், உதவித்தொகை மற்றும் தகுதி விவரங்களை நேரடியாக தெரிந்து கொள்ள உதவும் அதிநவீன டிஜிட்டல் தளம்.',
+    primaryCta: 'நலத்திட்டங்களை ஆராய்க',
+    secondaryCta: 'அதிகாரி நுழைவு',
+    quote: '"கடைக்கோடி கிராம மக்களுக்கும் கண்ணியமான, வெளிப்படையான நலச்சேவை தொழில்நுட்பம்."',
+    quoteAuthor: '— CRIVERA நோக்கம்',
+    aboutModal: {
+      title: 'CRIVERA தளம் பற்றி',
+      badge: 'அமைப்பு & கட்டமைப்பு',
+      desc: 'CRIVERA என்பது இணைய சேவை மற்றும் மின்தடை நிலவும் கிராமப்புற பகுதிகளிலும் தடையின்றி இயங்கும் ஆஃப்லைன் தொழில்நுட்ப மக்கள் நல கட்டமைப்பாகும். இடைத்தரகர்கள் இன்றி அரசு உதவிகளை நேரடியாக அறிந்து கொள்ளலாம்.',
+      pillars: [
+        {
+          title: 'ஆஃப்லைன் தொழில்நுட்பம்',
+          desc: 'இணைய சேவை மற்றும் மின்தடைகளின் போதும் உள்ளூர் நினைவகம் மூலம் தடையின்றி இயங்கும்.',
+          icon: 'offline_bolt',
+        },
+        {
+          title: 'நேரடி வங்கி உதவி (DBT)',
+          desc: 'முழு நிதி உதவி மற்றும் தகுதி விதிகள் எந்தவித இடைத்தரகரும் இன்றி வெளிப்படையாக காட்டப்படும்.',
+          icon: 'currency_rupee',
+        },
+        {
+          title: 'டோக்கன் & சரிபார்ப்பு',
+          desc: 'நொடிகளில் தகுதி சரிபார்ப்பு மற்றும் அச்சிடப்பட்ட ஆவண சரிபார்ப்பு சீட்டு பெறலாம்.',
+          icon: 'receipt_long',
+        },
+      ],
+      closeBtn: 'சரி, புரிந்தது',
+    },
+    contactModal: {
+      title: 'தொடர்பு கொள்ள',
+      badge: 'உதவி & விசாரணைகள்',
+      desc: 'தொழில்நுட்ப ஒருங்கிணைப்பு அல்லது அமைப்புகள் பற்றிய விவரங்களை அறிய எங்களை தொடர்பு கொள்ளவும்.',
+      emailLabel: 'மின்னஞ்சல் முகவரி',
+      emailVal: 'contact@crivera.systems',
+      phoneLabel: 'இலவச உதவி எண்',
+      phoneVal: '+91 800-425-7382',
+      locationLabel: 'முதன்மை மையம்',
+      locationVal: 'CRIVERA தொழில்நுட்ப மையம்',
+      sendMsgBtn: 'செய்தி அனுப்ப',
+      closeBtn: 'மூடுக',
+    },
+    schemesModal: {
+      title: 'செயலில் உள்ள மக்கள் நலத்திட்டங்கள்',
+      badge: 'அங்கீகரிக்கப்பட்ட நேரடி நிதி உதவிகள்',
+      desc: 'உதவித்தொகை விவரங்கள் மற்றும் தகுதி விதிமுறைகளுடன் கூடிய முழு பட்டியல்.',
+      closeBtn: 'மூடுக',
+    },
+  },
+};
+
+const PublicLandingPage = () => {
+  const [lang, setLang] = useState('ta'); // Default to Tamil
+  const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
+  const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
+  const [isSchemesModalOpen, setIsSchemesModalOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  const videoRef = useRef(null);
+
+  const t = content[lang];
+
+  return (
+    <div className="min-h-screen flex items-center justify-center p-3 sm:p-6 lg:p-8 font-sans antialiased text-slate-800 bg-[#0E131F] bg-[radial-gradient(#26334D_1px,transparent_1px)] [background-size:24px_24px]">
+      
+      <style>
+        {`
+          @keyframes fade-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          .animate-fade-up {
+            animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+          }
+          .delay-100 { animation-delay: 100ms; }
+          .delay-200 { animation-delay: 200ms; }
+          .delay-300 { animation-delay: 300ms; }
+          .delay-400 { animation-delay: 400ms; }
+        `}
+      </style>
+
+      {/* Main Outer Frame Container: Pure White, Sleek SaaS Border & Ambient Shadow */}
+      <div className="w-full max-w-[1240px] rounded-[38px] p-5 sm:p-8 lg:p-10 border border-slate-200/90 relative overflow-hidden bg-white shadow-[0_25px_60px_-15px_rgba(0,0,0,0.4)]">
+        
+        {/* Sleek Floating Pill Navbar */}
+        <header className="mb-6 sm:mb-8">
+          <div className="w-full bg-slate-50/90 backdrop-blur-md rounded-full px-4 sm:px-6 py-2.5 sm:py-3 border border-slate-200/90 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] flex items-center justify-between transition-all">
+            
+            {/* Left: CRIVERA Brand Identity */}
+            <div className="flex items-center shrink-0">
+              <a href="/" className="flex items-center space-x-3 focus:outline-none group shrink-0">
+                <svg width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 sm:h-9 sm:w-9 shrink-0 group-hover:scale-105 transition-transform">
+                  <path d="M 80 20 A 45 45 0 1 0 80 80 L 60 65 A 20 20 0 1 1 60 35 Z" fill="#0F172A"/>
+                  <circle cx="60" cy="50" r="16" fill="#0F172A"/>
+                  <path d="M 55 42 L 67 50 L 55 58 Z" fill="#FFFFFF"/>
+                </svg>
+                <div className="flex flex-col shrink-0">
+                  <span className="text-[17px] sm:text-[18.5px] font-black tracking-[0.24em] text-[#0F172A] uppercase leading-none font-sans">
+                    CRIVERA
+                  </span>
+                  <span className="text-[8px] sm:text-[8.5px] font-bold tracking-[0.28em] text-slate-400 uppercase mt-1 leading-none">
+                    SYSTEMS &amp; INFRASTRUCTURE
+                  </span>
+                </div>
+              </a>
+            </div>
+
+            {/* Center: Ordered navigation items: 1. Home, 2. About, 3. Schemes, 4. Contacts */}
+            <nav className="hidden md:flex items-center space-x-1 text-[13.5px] font-medium text-slate-600">
+              <button 
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
+                className="px-4 py-1.5 rounded-full bg-white text-slate-900 font-bold shadow-2xs cursor-pointer transition-colors"
+              >
+                {t.nav.home}
+              </button>
+
+              <button 
+                onClick={() => setIsAboutModalOpen(true)} 
+                className="px-4 py-1.5 rounded-full hover:bg-white text-slate-600 hover:text-slate-950 transition-colors cursor-pointer"
+              >
+                {t.nav.about}
+              </button>
+
+              <button 
+                onClick={() => setIsSchemesModalOpen(true)} 
+                className="px-4 py-1.5 rounded-full hover:bg-white text-slate-600 hover:text-slate-950 transition-colors cursor-pointer"
+              >
+                {t.nav.schemes}
+              </button>
+
+              <button 
+                onClick={() => setIsContactModalOpen(true)} 
+                className="px-4 py-1.5 rounded-full hover:bg-white text-slate-600 hover:text-slate-950 transition-colors cursor-pointer"
+              >
+                {t.nav.contacts}
+              </button>
+            </nav>
+
+            {/* Right: Height-Matched Actions */}
+            <div className="flex items-center space-x-3 shrink-0">
+              
+              {/* Bilingual EN / தமிழ் Switcher */}
+              <div className="h-[38px] flex items-center rounded-full bg-slate-200/70 p-1 border border-slate-300/70 shadow-2xs">
+                <button
+                  onClick={() => setLang('en')}
+                  className={`h-full px-3 rounded-full text-[11.5px] font-bold transition-all cursor-pointer flex items-center justify-center ${
+                    lang === 'en'
+                      ? 'bg-white text-slate-900 shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                  type="button"
+                >
+                  EN
+                </button>
+                <button
+                  onClick={() => setLang('ta')}
+                  className={`h-full px-3 rounded-full text-[11.5px] font-bold transition-all cursor-pointer flex items-center justify-center ${
+                    lang === 'ta'
+                      ? 'bg-white text-slate-900 shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                  type="button"
+                >
+                  தமிழ்
+                </button>
+              </div>
+
+              {/* Officer Sign In Button */}
+              <button
+                onClick={() => setIsAdminModalOpen(true)}
+                className="h-[38px] px-4 sm:px-5 text-[12px] sm:text-[12.5px] font-bold text-white bg-[#EA580C] hover:bg-[#C2410C] rounded-full shadow-md shadow-orange-600/20 transition-all cursor-pointer active:scale-95 flex items-center justify-center gap-1.5 shrink-0"
+              >
+                <span className="material-symbols-outlined text-[15px]">lock</span>
+                <span>{t.adminBtn}</span>
+              </button>
+            </div>
+
+          </div>
+        </header>
+
+        {/* Hero Section: 5 cols Left (Text), 7 cols Right (Expanded Animation) */}
+        <main className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 pt-2 sm:pt-3 pb-3 sm:pb-4 items-center">
+          
+          {/* Hero Left Column (lg:col-span-5: Clean, Focused Text Block) */}
+          <div className="lg:col-span-5 flex flex-col justify-center pr-0 lg:pr-2 relative z-20">
+            
+            {/* Main Headline */}
+            <h1 className="text-3xl sm:text-4xl lg:text-[37px] leading-[1.15] font-extrabold text-[#0F172A] tracking-tight mb-3.5 animate-fade-up">
+              {t.headline}
+            </h1>
+
+            {/* Subheading Paragraph */}
+            <p className="text-slate-600 text-[13.5px] sm:text-[14.5px] leading-relaxed max-w-[430px] mb-5 animate-fade-up delay-100">
+              {t.subheading}
+            </p>
+
+            {/* Action Buttons (Guaranteed Side-by-Side in both English and Tamil without overflow) */}
+            <div className="flex flex-wrap items-center gap-3 mb-6 animate-fade-up delay-200">
+              
+              {/* Primary Button */}
+              <button
+                onClick={() => setIsSchemesModalOpen(true)}
+                className="group h-[45px] px-5 sm:px-5.5 bg-[#0F172A] hover:bg-[#1E293B] text-white text-[12.5px] sm:text-[13px] font-bold rounded-full shadow-md shadow-slate-900/15 transition-all cursor-pointer active:scale-95 flex items-center justify-center gap-2 ring-1 ring-white/10 shrink-0"
+              >
+                <span>{t.primaryCta}</span>
+                <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform shrink-0">
+                  arrow_forward
+                </span>
+              </button>
+
+              {/* Officer Portal Button */}
+              <button
+                onClick={() => setIsAdminModalOpen(true)}
+                className="group h-[45px] px-4.5 sm:px-5 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-800 text-[12.5px] sm:text-[13px] font-bold border border-slate-200 shadow-xs hover:shadow-md transition-all cursor-pointer active:scale-95 flex items-center justify-center gap-2 shrink-0"
+              >
+                <div className="w-5 h-5 rounded-full bg-[#EA580C]/10 group-hover:bg-[#EA580C] text-[#EA580C] group-hover:text-white flex items-center justify-center transition-colors shrink-0">
+                  <span className="material-symbols-outlined text-[13px]">lock</span>
+                </div>
+                <span>
+                  {t.secondaryCta}
+                </span>
+              </button>
+            </div>
+
+            {/* Inspirational Quote Section */}
+            <div className="p-3.5 sm:p-4 bg-slate-50 rounded-2xl border border-slate-200/80 max-w-[430px] animate-fade-up delay-300">
+              <div className="flex items-start gap-2.5">
+                <span className="material-symbols-outlined text-indigo-500 text-[19px] shrink-0 mt-0.5 select-none">
+                  format_quote
+                </span>
+                <div>
+                  <p className="text-slate-700 font-medium text-[12.5px] sm:text-[13px] leading-relaxed italic">
+                    {t.quote}
+                  </p>
+                  <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-indigo-500 mt-1 block">
+                    {t.quoteAuthor}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Hero Right Column (lg:col-span-7: Expanded, High-Impact Animation Area) */}
+          <div className="lg:col-span-7 relative w-full h-[440px] sm:h-[520px] lg:h-[580px] flex items-center justify-center lg:justify-end animate-fade-up delay-400 z-10 pointer-events-none overflow-visible">
+            <div className="w-full h-full flex items-center justify-center lg:justify-end">
+              <video 
+                ref={videoRef}
+                src="/from_start_to_end_it_should_be.mp4" 
+                autoPlay 
+                loop
+                muted 
+                playsInline
+                className="w-full h-full object-contain scale-110 sm:scale-115 lg:scale-120 origin-center" 
+                style={{
+                  filter: 'brightness(1.10) contrast(1.20) saturate(1.05)',
+                  mixBlendMode: 'multiply',
+                }}
+              />
+            </div>
+          </div>
+
+        </main>
+
+      </div>
+
+      {/* 1. About Platform Modal */}
+      {isAboutModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs">
+          <div className="relative w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200 animate-in fade-in zoom-in duration-150">
+            
+            <button
+              onClick={() => setIsAboutModalOpen(false)}
+              className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors cursor-pointer"
+            >
+              <span className="material-symbols-outlined text-[18px]">close</span>
+            </button>
+
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full mb-3">
+              <span className="material-symbols-outlined text-[16px]">verified</span>
+              <span>{t.aboutModal.badge}</span>
+            </div>
+
+            <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight pr-6 mb-2">
+              {t.aboutModal.title}
+            </h3>
+
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+              {t.aboutModal.desc}
+            </p>
+
+            <div className="space-y-3 mb-6">
+              {t.aboutModal.pillars.map((pillar, idx) => (
+                <div key={idx} className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/70 flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="material-symbols-outlined text-[18px]">{pillar.icon}</span>
+                  </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-900 mb-0.5">
+                      {pillar.title}
+                    </h4>
+                    <p className="text-[11.5px] sm:text-xs text-slate-500 leading-relaxed">
+                      {pillar.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <button
+              onClick={() => setIsAboutModalOpen(false)}
+              className="w-full py-3 bg-[#0F172A] hover:bg-[#1E293B] text-white text-xs font-bold rounded-xl transition-colors cursor-pointer"
+            >
+              {t.aboutModal.closeBtn}
+            </button>
+
+          </div>
+        </div>
+      )}
+
+      {/* 2. Schemes Modal */}
+      {isSchemesModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs">
+          <div className="relative w-full max-w-2xl max-h-[90vh] bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200 flex flex-col animate-in fade-in zoom-in duration-150">
+            
+            <button
+              onClick={() => setIsSchemesModalOpen(false)}
+              className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors cursor-pointer"
+            >
+              <span className="material-symbols-outlined text-[18px]">close</span>
+            </button>
+
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full mb-3 w-fit">
+              <span className="material-symbols-outlined text-[16px]">account_balance</span>
+              <span>{t.schemesModal.badge}</span>
+            </div>
+
+            <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight pr-6 mb-1">
+              {t.schemesModal.title}
+            </h3>
+
+            <p className="text-xs sm:text-sm text-slate-600 mb-5">
+              {t.schemesModal.desc}
+            </p>
+
+            <div className="overflow-y-auto space-y-3 pr-1 flex-1 mb-5">
+              {schemesList.map((scheme) => (
+                <div key={scheme.id} className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-indigo-200 transition-colors flex items-start justify-between gap-4">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full">
+                        {lang === 'ta' ? scheme.tagTa : scheme.tagEn}
+                      </span>
+                      <span className="text-[10px] font-mono text-slate-400">
+                        {scheme.id}
+                      </span>
+                    </div>
+                    <h4 className="text-sm font-bold text-slate-900">
+                      {lang === 'ta' ? scheme.titleTa : scheme.titleEn}
+                    </h4>
+                    <p className="text-xs text-slate-500 mt-0.5 leading-relaxed">
+                      {lang === 'ta' ? scheme.descTa : scheme.descEn}
+                    </p>
+                  </div>
+                  <div className="text-right shrink-0">
+                    <span className="text-xs font-extrabold text-emerald-700 block whitespace-nowrap">
+                      {lang === 'ta' ? scheme.benefitTa : scheme.benefitEn}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <button
+              onClick={() => setIsSchemesModalOpen(false)}
+              className="w-full py-3 bg-[#0F172A] hover:bg-[#1E293B] text-white text-xs font-bold rounded-xl transition-colors cursor-pointer"
+            >
+              {t.schemesModal.closeBtn}
+            </button>
+
+          </div>
+        </div>
+      )}
+
+      {/* 3. Contacts Modal */}
+      {isContactModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs">
+          <div className="relative w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200 animate-in fade-in zoom-in duration-150">
+            
+            <button
+              onClick={() => setIsContactModalOpen(false)}
+              className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors cursor-pointer"
+            >
+              <span className="material-symbols-outlined text-[18px]">close</span>
+            </button>
+
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full mb-3">
+              <span className="material-symbols-outlined text-[16px]">contact_support</span>
+              <span>{t.contactModal.badge}</span>
+            </div>
+
+            <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight pr-6 mb-2">
+              {t.contactModal.title}
+            </h3>
+
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+              {t.contactModal.desc}
+            </p>
+
+            <div className="space-y-3 mb-6">
+              {/* Email */}
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/70 flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center shrink-0">
+                  <span className="material-symbols-outlined text-[20px]">mail</span>
+                </div>
+                <div>
+                  <span className="text-[11px] font-bold text-slate-400 block uppercase tracking-wider">{t.contactModal.emailLabel}</span>
+                  <a href={`mailto:${t.contactModal.emailVal}`} className="text-xs sm:text-sm font-bold text-slate-900 hover:text-indigo-600 transition-colors">
+                    {t.contactModal.emailVal}
+                  </a>
+                </div>
+              </div>
+
+              {/* Phone */}
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/70 flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center shrink-0">
+                  <span className="material-symbols-outlined text-[20px]">call</span>
+                </div>
+                <div>
+                  <span className="text-[11px] font-bold text-slate-400 block uppercase tracking-wider">{t.contactModal.phoneLabel}</span>
+                  <span className="text-xs sm:text-sm font-bold text-slate-900">
+                    {t.contactModal.phoneVal}
+                  </span>
+                </div>
+              </div>
+
+              {/* Location */}
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/70 flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                  <span className="material-symbols-outlined text-[20px]">hub</span>
+                </div>
+                <div>
+                  <span className="text-[11px] font-bold text-slate-400 block uppercase tracking-wider">{t.contactModal.locationLabel}</span>
+                  <span className="text-xs sm:text-sm font-bold text-slate-900">
+                    {t.contactModal.locationVal}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <button
+              onClick={() => setIsContactModalOpen(false)}
+              className="w-full py-3 bg-[#0F172A] hover:bg-[#1E293B] text-white text-xs font-bold rounded-xl transition-colors cursor-pointer"
+            >
+              {t.contactModal.closeBtn}
+            </button>
+
+          </div>
+        </div>
+      )}
+
+      {/* Officer Authentication Modal */}
+      <AdminLoginModal
+        isOpen={isAdminModalOpen}
+        onClose={() => setIsAdminModalOpen(false)}
+      />
+
+    </div>
+  );
+};
+
+export default PublicLandingPage;

@@ -1,0 +1,228 @@
+<USER_REQUEST>
+hey i came up with a pretty  good landing page design but there are so many things to change from text citent present in it and the image that containing two people need some corrections can u do that first and after that leme check 
+
+code 
+
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Kinetic - National Digital Welfare Stack</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              200: '#ddd6fe',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              navy: '#0f172a',
+              dark: '#1e1b4b',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Styles -->
+<style data-purpose="background-pattern">
+    /* Subtle dot grid pattern on the outer container */
+    body {
+      background-color: #12151b;
+      background-image: radial-gradient(#2d3748 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+  </style>
+<style data-purpose="card-styling">
+    .canvas-card {
+      background: linear-gradient(180deg, #f7f9fd 0%, #f1f4fb 70%, #edf1fa 100%);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.45);
+    }
+    .metric-pill {
+      background-color: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+    }
+  </style>
+<!-- END: Custom Styles -->
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-10 font-sans antialiased text-slate-800">
+<!-- BEGIN: Main Outer Frame Container -->
+<div class="canvas-card w-full max-w-[1240px] rounded-[38px] p-6 sm:p-8 lg:p-10 border border-slate-700/20 relative overflow-hidden" data-purpose="application-window">
+<!-- BEGIN: MainHeader -->
+<header class="flex items-center justify-between pb-6 sm:pb-8 border-b border-transparent" data-purpose="navigation-header">
+<!-- Left: Logo and Brand Name -->
+<div class="flex items-center space-x-9">
+<a class="flex items-center space-x-2.5 focus:outline-none" href="#">
+<div class="w-9 h-9 rounded-xl bg-[#4549db] flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-500/20">
+            K
+          </div>
+<span class="text-xl font-bold tracking-tight text-slate-900">Kinetic</span>
+</a>
+<!-- Main Navigation Links -->
+<nav class="hidden md:flex items-center space-x-6 text-[14px] font-medium" data-purpose="header-links">
+<a class="text-[#4338ca] font-semibold transition-colors" href="#">Home</a>
+<a class="text-slate-600 hover:text-slate-900 transition-colors" href="#">About Us</a>
+<a class="text-slate-600 hover:text-slate-900 transition-colors" href="#">Solutions</a>
+<a class="text-slate-600 hover:text-slate-900 transition-colors" href="#">Impact</a>
+<a class="text-slate-600 hover:text-slate-900 transition-colors" href="#">Coverage</a>
+</nav>
+</div>
+<!-- Right: Action Buttons -->
+<div class="flex items-center space-x-4">
+<a class="text-[14px] font-medium text-slate-700 hover:text-slate-900 hidden sm:inline-block px-1" href="#">Sign In</a>
+<a class="px-5 py-2.5 bg-[#4549db] hover:bg-[#3b3ec7] text-white text-[13.5px] font-semibold rounded-full shadow-md shadow-indigo-500/20 transition-all duration-150" href="#">
+          Get Started
+        </a>
+<button aria-label="User profile" class="w-9 h-9 rounded-full bg-[#4549db] text-white flex items-center justify-center hover:opacity-95 transition-opacity" type="button">
+<!-- User Profile Silhouette Icon -->
+<svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+<path clip-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" fill-rule="evenodd"></path>
+</svg>
+</button>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: Hero Section -->
+<main class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 pt-4 lg:pt-6 pb-8 items-center" data-purpose="hero-content">
+<!-- BEGIN: Hero Left Column (Copy & CTA) -->
+<div class="lg:col-span-6 flex flex-col justify-center pr-0 lg:pr-2">
+<!-- Status Pill Badge -->
+<div class="inline-flex items-center gap-2 bg-[#eae7fc] text-[#4f46e5] text-[11px] font-bold px-3 py-1 rounded-full w-fit tracking-wider uppercase mb-5">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4f46e5]"></span>
+          National Digital Welfare Stack
+        </div>
+<!-- Main Headline -->
+<h1 class="text-3xl sm:text-4xl lg:text-[44px] leading-[1.14] font-extrabold text-[#111827] tracking-tight mb-4">
+          Direct, dignified welfare delivery for every citizen.
+        </h1>
+<!-- Subheading Paragraph -->
+<p class="text-slate-500 text-[14.5px] sm:text-[15px] leading-relaxed max-w-lg mb-7">
+          Eliminating paperwork barriers, middleman leakages, and connectivity downtime. Delivering instant NFC biometric and smart verification directly to rural doorsteps.
+        </p>
+<!-- CTA Action Buttons -->
+<div class="flex flex-wrap items-center gap-3.5 mb-9">
+<a class="px-6 py-3 bg-[#4549db] hover:bg-[#3a3dc7] text-white text-[14px] font-semibold rounded-full shadow-md shadow-indigo-600/25 transition-all" href="#">
+            Get Started
+          </a>
+<a class="px-5 py-2.5 text-slate-700 hover:text-slate-900 border border-slate-300 hover:border-slate-400 bg-white/70 text-[14px] font-medium rounded-full inline-flex items-center gap-1.5 transition-all" href="#">
+            Explore Active Schemes
+            <span class="text-base font-normal">→</span>
+</a>
+</div>
+<!-- Social Proof & Validation -->
+<div class="flex flex-wrap items-center gap-3 pt-1">
+<!-- Stacked Community Avatars -->
+<div class="flex -space-x-2 overflow-hidden">
+<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-200 text-slate-700 text-[10px] font-bold ring-2 ring-white">GP</span>
+<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 text-[10px] font-bold ring-2 ring-white">TN</span>
+<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-200 text-slate-700 text-[10px] font-bold ring-2 ring-white">KA</span>
+<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-100 text-slate-600 text-[10px] font-bold ring-2 ring-white">+9K</span>
+</div>
+<!-- Rating & Description -->
+<div class="text-[12.5px] leading-tight">
+<div class="flex items-center gap-1 text-amber-400 font-semibold mb-0.5">
+<span class="">★</span><span class="">★</span><span class="">★</span><span class="">★</span><span class="">★</span>
+<span class="text-slate-800 font-bold ml-1 text-xs">99.98% Uptime</span>
+</div>
+<p class="text-slate-500 text-[12px]">Trusted across 11,400+ Gram Panchayats nationwide</p>
+</div>
+</div>
+</div>
+<!-- END: Hero Left Column -->
+<!-- BEGIN: Hero Right Column (Illustration & Floating Badges) -->
+<div class="lg:col-span-6 relative flex items-center justify-center py-4 lg:py-0"><!-- Organic Background Glow & Shape Backdrop -->
+<div class="absolute w-[360px] h-[360px] sm:w-[440px] sm:h-[440px] bg-gradient-to-tr from-[#3525cd] via-[#4338ca] to-[#6366f1] opacity-90 shadow-2xl shadow-indigo-900/30" style="border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;"></div>
+<div class="absolute w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] bg-gradient-to-bl from-[#6063ee] to-[#4338ca] opacity-40 -rotate-12 translate-x-3 -translate-y-3" style="border-radius: 60% 40% 50% 50% / 55% 58% 42% 45%;"></div>
+
+<!-- Illustration Container with mix-blend-multiply and clean nesting -->
+<div class="relative z-10 w-full max-w-[420px] flex items-center justify-center p-2">
+  <img alt="Field facilitator verifying citizen subsidy directly on digital tablet" class="w-full h-auto object-contain block" style="mix-blend-mode: multiply; filter: contrast(1.03);" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpSgaKoP1NtESHDsXBn64eGQBaUlATW69SIx6pCz8B-8fXxc5Pj97zkE_EqA7ljM8xS-cdeds4b9XZ67cYBlXkfbSf5dkGVIoeIRAiNPYfnoKJ2LRKohMGqjTPeSDPddRmI9LTks7SfETJSyb_RXct7GzJmLsm9APT6L4OnmvA8xq16x37mX3NEwwuzKdC2d6sykjDxdgwKVyD_lJyHyhXS_l5KlT11LJbWM5MU0YnASlg_G2yLhnGVPPEg_fVv7YmrA">
+</div></div>
+<!-- END: Hero Right Column -->
+</main>
+<!-- END: Hero Section -->
+<!-- BEGIN: Bottom Metrics Bar -->
+<section aria-label="Key Performance Metrics" class="mt-6 pt-2">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+<!-- Metric Card 1 -->
+<div class="metric-pill rounded-2xl p-4 sm:p-5 transition-transform hover:-translate-y-0.5 shadow-sm">
+<div class="text-2xl lg:text-[26px] font-extrabold text-[#4338ca] tracking-tight mb-1">
+            11,400+
+          </div>
+<div class="text-sm font-bold text-slate-900 mb-0.5">
+            Active Rural Centers
+          </div>
+<div class="text-xs text-slate-500">
+            Providing daily doorstep access
+          </div>
+</div>
+<!-- Metric Card 2 -->
+<div class="metric-pill rounded-2xl p-4 sm:p-5 transition-transform hover:-translate-y-0.5 shadow-sm">
+<div class="text-2xl lg:text-[26px] font-extrabold text-[#4338ca] tracking-tight mb-1">
+            ₹1,200 Cr+
+          </div>
+<div class="text-sm font-bold text-slate-900 mb-0.5">
+            Direct Disbursals
+          </div>
+<div class="text-xs text-slate-500">
+            Zero intermediary commissions
+          </div>
+</div>
+<!-- Metric Card 3 -->
+<div class="metric-pill rounded-2xl p-4 sm:p-5 transition-transform hover:-translate-y-0.5 shadow-sm">
+<div class="text-2xl lg:text-[26px] font-extrabold text-[#4338ca] tracking-tight mb-1">
+            &lt; 280ms
+          </div>
+<div class="text-sm font-bold text-slate-900 mb-0.5">
+            Attestation Latency
+          </div>
+<div class="text-xs text-slate-500">
+            Deterministic hardware speed
+          </div>
+</div>
+<!-- Metric Card 4 -->
+<div class="metric-pill rounded-2xl p-4 sm:p-5 transition-transform hover:-translate-y-0.5 shadow-sm">
+<div class="text-2xl lg:text-[26px] font-extrabold text-[#4338ca] tracking-tight mb-1">
+            100%
+          </div>
+<div class="text-sm font-bold text-slate-900 mb-0.5">
+            Offline Resilience
+          </div>
+<div class="text-xs text-slate-500">
+            Operates during power outages
+          </div>
+</div>
+</div>
+</section>
+<!-- END: Bottom Metrics Bar -->
+</div>
+<!-- END: Main Outer Frame Container -->
+
+
+</body></html>
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-07T23:08:57+05:30.
+
+The user's current state is as follows:
+Active Document: c:\Users\DHINESH\Desktop\gram-seva-system\dashboard-ui\src\components\ProtectedRoute.jsx (LANGUAGE_JAVASCRIPT)
+Cursor is on line: 1
+Other open documents:
+- c:\Users\DHINESH\Desktop\gram-seva-system\dashboard-ui\src\main.jsx (LANGUAGE_JAVASCRIPT)
+- c:\Users\DHINESH\Desktop\gram-seva-system\dashboard-ui\vite.config.js (LANGUAGE_JAVASCRIPT)
+- c:\Users\DHINESH\Desktop\gram-seva-system\dashboard-ui\src\components\DigitalTwin.jsx (LANGUAGE_JAVASCRIPT)
+- c:\Users\DHINESH\Desktop\gram-seva-system\dashboard-ui\src\components\AnalyticsChart.jsx (LANGUAGE_JAVASCRIPT)
+- c:\Users\DHINESH\Desktop\gram-seva-system\dashboard-ui\src\components\SchemeManager.jsx (LANGUAGE_JAVASCRIPT)
+No browser pages are currently open.
+Running terminal commands:
+- npm run dev (in c:\Users\DHINESH\Desktop\gram-seva-system\dashboard-ui, running for 5h22m39s)
+</ADDITIONAL_METADATA>

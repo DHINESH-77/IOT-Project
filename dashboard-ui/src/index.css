@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #002046;
+  --color-primary-container: #1b365d;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #87a0cd;
+  --color-primary-fixed: #d6e3ff;
+  --color-primary-fixed-dim: #aec7f7;
+  --color-on-primary-fixed: #001b3d;
+  --color-on-primary-fixed-variant: #2e476f;
+  --color-inverse-primary: #aec7f7;
+
+  --color-secondary: #944a00;
+  --color-secondary-container: #fc8f34;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #663100;
+  --color-secondary-fixed: #ffdcc5;
+  --color-secondary-fixed-dim: #ffb783;
+  --color-on-secondary-fixed: #301400;
+  --color-on-secondary-fixed-variant: #713700;
+
+  --color-tertiary: #002522;
+  --color-tertiary-container: #003d37;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #3cafa2;
+  --color-tertiary-fixed: #89f5e7;
+  --color-tertiary-fixed-dim: #6bd8cb;
+  --color-on-tertiary-fixed: #00201d;
+  --color-on-tertiary-fixed-variant: #005049;
+
+  --color-surface: #f9f9ff;
+  --color-surface-bright: #f9f9ff;
+  --color-surface-dim: #cfdaf2;
+  --color-surface-tint: #465f88;
+  --color-surface-variant: #d8e3fb;
+  --color-on-surface: #111c2d;
+  --color-on-surface-variant: #44474e;
+  --color-inverse-surface: #263143;
+  --color-inverse-on-surface: #ecf1ff;
+
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f0f3ff;
+  --color-surface-container: #e7eeff;
+  --color-surface-container-high: #dee8ff;
+  --color-surface-container-highest: #d8e3fb;
+
+  --color-outline: #74777f;
+  --color-outline-variant: #c4c6cf;
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-on-error: #ffffff;
+  --color-on-error-container: #93000a;
+
+  --font-mono-telemetry: 'Courier Prime', monospace;
+  --font-headline-sm: 'Public Sans', sans-serif;
+  --font-headline-md: 'Public Sans', sans-serif;
+  --font-headline-lg: 'Public Sans', sans-serif;
+  --font-body-sm: 'Noto Sans', sans-serif;
+  --font-body-md: 'Noto Sans', sans-serif;
+  --font-body-lg: 'Noto Sans', sans-serif;
+  --font-label-telemetry: 'Noto Sans', sans-serif;
+  --font-label-touch: 'Public Sans', sans-serif;
+
+  --spacing-screen-padding-edge: 2rem;
+  --spacing-admin-pane-padding: 1.25rem;
+  --spacing-admin-gap-normal: 1rem;
+  --spacing-admin-gap-dense: 0.5rem;
+}
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
