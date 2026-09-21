@@ -185,12 +185,8 @@ const AboutPage = () => {
               onClick={() => navigate('/')} 
               className="flex items-center space-x-3.5 focus:outline-none group shrink-0 cursor-pointer text-left"
             >
-              <div className="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center text-white shadow-md shadow-slate-900/10 group-hover:scale-105 transition-transform duration-200">
-                <svg width="22" height="22" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M 80 20 A 45 45 0 1 0 80 80 L 60 65 A 20 20 0 1 1 60 35 Z" fill="#FFFFFF"/>
-                  <circle cx="60" cy="50" r="16" fill="#FFFFFF"/>
-                  <path d="M 55 42 L 67 50 L 55 58 Z" fill="#0F172A"/>
-                </svg>
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-950 border border-slate-800/80 shadow-sm flex items-center justify-center p-1.5 group-hover:scale-105 transition-transform duration-200">
+                <img src="/crivera-logo.png" alt="CRIVERA Logo" className="w-full h-full object-contain filter drop-shadow-xs" />
               </div>
               <div className="flex flex-col shrink-0">
                 <span className="text-[17px] sm:text-[18.5px] font-black tracking-[0.24em] text-slate-900 uppercase leading-none font-sans">

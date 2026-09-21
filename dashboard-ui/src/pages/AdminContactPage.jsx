@@ -49,17 +49,9 @@ const AdminContactPage = () => {
           
           {/* Brand Identity */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <svg
-              width="34"
-              height="34"
-              viewBox="0 0 100 100"
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-8 w-8 shrink-0 text-slate-900 transition-transform group-hover:scale-105"
-            >
-              <path d="M 80 20 A 45 45 0 1 0 80 80 L 60 65 A 20 20 0 1 1 60 35 Z" fill="#0F172A" />
-              <circle cx="60" cy="50" r="16" fill="#0F172A" />
-              <path d="M 55 42 L 67 50 L 55 58 Z" fill="#FFFFFF" />
-            </svg>
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-950 border border-slate-800/80 shadow-sm flex items-center justify-center p-1.5 group-hover:scale-105 transition-transform duration-200">
+              <img src="/crivera-logo.png" alt="CRIVERA Logo" className="w-full h-full object-contain filter drop-shadow-xs" />
+            </div>
             <div className="flex flex-col">
               <span className="text-[16px] font-black tracking-[0.22em] text-slate-900 uppercase leading-none font-sans">
                 CRIVERA
