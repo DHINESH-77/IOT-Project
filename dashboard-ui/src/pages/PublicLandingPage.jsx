@@ -92,7 +92,6 @@ const content = {
       home: 'Home',
       about: 'About',
       schemes: 'Schemes',
-      contacts: 'Contacts',
     },
     adminBtn: 'Officer Sign In',
     headline: 'Direct, dignified welfare delivery for every rural citizen.',
@@ -124,19 +123,6 @@ const content = {
       ],
       closeBtn: 'Close Overview',
     },
-    contactModal: {
-      title: 'Contact CRIVERA Platform',
-      badge: 'Systems & Infrastructure Support',
-      desc: 'Have questions about rural deployment, hardware telemetry, or welfare integrations? Get in touch directly with our engineering team.',
-      emailLabel: 'Direct Email',
-      emailVal: 'contact@crivera.systems',
-      phoneLabel: 'Helpline Desk',
-      phoneVal: '+91 800-425-7382 (Toll Free)',
-      locationLabel: 'Operations Hub',
-      locationVal: 'CRIVERA Systems Hub, Technology Sector',
-      sendMsgBtn: 'Send Inquiries',
-      closeBtn: 'Close Window',
-    },
     schemesModal: {
       title: 'Active Public Welfare Schemes',
       badge: 'Verified Benefit Grants',
@@ -151,7 +137,6 @@ const content = {
       home: 'முகப்பு',
       about: 'அமைப்பு பற்றி',
       schemes: 'நலத்திட்டங்கள்',
-      contacts: 'தொடர்புக்கு',
     },
     adminBtn: 'அதிகாரி உள்நுழைவு',
     headline: 'கிராமப்புற மக்களுக்கான நேரடி மற்றும் வெளிப்படையான நலச்சேவை.',
@@ -183,19 +168,6 @@ const content = {
       ],
       closeBtn: 'சரி, புரிந்தது',
     },
-    contactModal: {
-      title: 'தொடர்பு கொள்ள',
-      badge: 'உதவி & விசாரணைகள்',
-      desc: 'தொழில்நுட்ப ஒருங்கிணைப்பு அல்லது அமைப்புகள் பற்றிய விவரங்களை அறிய எங்களை தொடர்பு கொள்ளவும்.',
-      emailLabel: 'மின்னஞ்சல் முகவரி',
-      emailVal: 'contact@crivera.systems',
-      phoneLabel: 'இலவச உதவி எண்',
-      phoneVal: '+91 800-425-7382',
-      locationLabel: 'முதன்மை மையம்',
-      locationVal: 'CRIVERA தொழில்நுட்ப மையம்',
-      sendMsgBtn: 'செய்தி அனுப்ப',
-      closeBtn: 'மூடுக',
-    },
     schemesModal: {
       title: 'செயலில் உள்ள மக்கள் நலத்திட்டங்கள்',
       badge: 'அங்கீகரிக்கப்பட்ட நேரடி நிதி உதவிகள்',
@@ -211,7 +183,6 @@ const PublicLandingPage = () => {
   const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
   const [isSchemesModalOpen, setIsSchemesModalOpen] = useState(false);
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const videoRef = useRef(null);
   const lenisRef = useRef(null);
@@ -406,13 +377,6 @@ const PublicLandingPage = () => {
               className="px-4 py-1.5 rounded-full hover:bg-slate-50 text-slate-600 hover:text-slate-950 transition-colors cursor-pointer"
             >
               {t.nav.schemes}
-            </button>
-
-            <button 
-              onClick={() => setIsContactModalOpen(true)} 
-              className="px-4 py-1.5 rounded-full hover:bg-slate-50 text-slate-600 hover:text-slate-950 transition-colors cursor-pointer"
-            >
-              {t.nav.contacts}
             </button>
           </nav>
 
@@ -664,83 +628,6 @@ const PublicLandingPage = () => {
               className="w-full py-3 bg-[#0F172A] hover:bg-[#1E293B] text-white text-xs font-bold rounded-xl transition-colors cursor-pointer"
             >
               {t.schemesModal.closeBtn}
-            </button>
-
-          </div>
-        </div>
-      )}
-
-      {/* 3. Contacts Modal */}
-      {isContactModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs">
-          <div className="relative w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200 animate-in fade-in zoom-in duration-150">
-            
-            <button
-              onClick={() => setIsContactModalOpen(false)}
-              className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors cursor-pointer"
-            >
-              <span className="material-symbols-outlined text-[18px]">close</span>
-            </button>
-
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full mb-3">
-              <span className="material-symbols-outlined text-[16px]">contact_support</span>
-              <span>{t.contactModal.badge}</span>
-            </div>
-
-            <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight pr-6 mb-2">
-              {t.contactModal.title}
-            </h3>
-
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
-              {t.contactModal.desc}
-            </p>
-
-            <div className="space-y-3 mb-6">
-              {/* Email */}
-              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/70 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined text-[20px]">mail</span>
-                </div>
-                <div>
-                  <span className="text-[11px] font-bold text-slate-400 block uppercase tracking-wider">{t.contactModal.emailLabel}</span>
-                  <a href={`mailto:${t.contactModal.emailVal}`} className="text-xs sm:text-sm font-bold text-slate-900 hover:text-indigo-600 transition-colors">
-                    {t.contactModal.emailVal}
-                  </a>
-                </div>
-              </div>
-
-              {/* Phone */}
-              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/70 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined text-[20px]">call</span>
-                </div>
-                <div>
-                  <span className="text-[11px] font-bold text-slate-400 block uppercase tracking-wider">{t.contactModal.phoneLabel}</span>
-                  <span className="text-xs sm:text-sm font-bold text-slate-900">
-                    {t.contactModal.phoneVal}
-                  </span>
-                </div>
-              </div>
-
-              {/* Location */}
-              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/70 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined text-[20px]">hub</span>
-                </div>
-                <div>
-                  <span className="text-[11px] font-bold text-slate-400 block uppercase tracking-wider">{t.contactModal.locationLabel}</span>
-                  <span className="text-xs sm:text-sm font-bold text-slate-900">
-                    {t.contactModal.locationVal}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <button
-              onClick={() => setIsContactModalOpen(false)}
-              className="w-full py-3 bg-[#0F172A] hover:bg-[#1E293B] text-white text-xs font-bold rounded-xl transition-colors cursor-pointer"
-            >
-              {t.contactModal.closeBtn}
             </button>
 
           </div>
