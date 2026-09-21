@@ -21,8 +21,8 @@ const AdminNavbar = () => {
           
           {/* Brand & Admin Indicator */}
           <div className="flex items-center gap-3">
-            <div className="relative flex items-center justify-center w-10 h-10 rounded-2xl bg-gradient-to-br from-indigo-500 to-sky-600 shadow-md shadow-indigo-500/25 border border-indigo-400/30">
-              <Cpu className="w-5 h-5 text-white" />
+            <div className="relative flex items-center justify-center w-10 h-10 rounded-2xl bg-slate-950 border border-slate-700/80 shadow-md shadow-black/40 p-1.5">
+              <img src="/crivera-logo.png" alt="CRIVERA Logo" className="w-full h-full object-contain filter drop-shadow-xs" />
               <span className="absolute -top-1 -right-1 flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
