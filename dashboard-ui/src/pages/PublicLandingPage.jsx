@@ -93,7 +93,7 @@ const content = {
       about: 'About',
       schemes: 'Schemes',
     },
-    adminBtn: 'Officer Sign In',
+    adminBtn: 'Officer SignIn',
     headline: 'Direct, dignified welfare delivery for every rural citizen.',
     subheading: 'An intelligent, offline-resilient digital welfare platform eliminating paperwork barriers, middleman leakages, and operational downtime. Delivering instant verification, grant tracking, and scheme accessibility directly to grassroots doorsteps.',
     primaryCta: 'Explore Welfare Schemes',
