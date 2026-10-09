@@ -296,7 +296,6 @@ The `data-worker` module provides standalone Python utilities to ingest, clean, 
 ### Scripts
 * `filter_schemes.py`: Inspects `data/Schemes.csv` and partitions records into Tamil Nadu state schemes and Central government initiatives.
 * `export_clean_schemes.py`: Normalizes fields (eligibility criteria, income limits, application links, scheme benefits) into clean JSON records for MongoDB ingestion.
-* `discover_api.py`: Endpoint diagnostic tool for official scheme portals.
 
 ### Running Data Worker Scripts
 ```bash
