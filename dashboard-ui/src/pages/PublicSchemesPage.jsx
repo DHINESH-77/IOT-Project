@@ -5,6 +5,7 @@ import { useScheme } from '../context/SchemeContext';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import SchemeCard from '../components/schemes/SchemeCard';
 import SchemeDetailModal from '../components/schemes/SchemeDetailModal';
+import { API_BASE_URL } from '../config';
 
 const categories = [
   { id: 'all', labelEn: 'All Categories', labelTa: 'அனைத்துப் பிரிவுகள்' },
@@ -61,7 +62,7 @@ const PublicSchemesPage = () => {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/schemes');
+      const res = await fetch(`${API_BASE_URL}/api/schemes`);
       const json = await res.json();
       if (json.success && Array.isArray(json.data)) {
         // Sort chronologically from 2026 to 2024

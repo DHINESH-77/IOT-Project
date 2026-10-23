@@ -14,6 +14,7 @@ import {
 import SchemeCard from '../components/schemes/SchemeCard';
 import SchemeDetailModal from '../components/schemes/SchemeDetailModal';
 import { useAuth } from '../context/AuthContext';
+import { API_BASE_URL } from '../config';
 
 const categories = [
   { id: 'all', label: 'All Categories' },
@@ -95,7 +96,7 @@ const AdminSchemesPage = () => {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/schemes');
+      const res = await fetch(`${API_BASE_URL}/api/schemes`);
       const json = await res.json();
       if (json.success && Array.isArray(json.data)) {
         // Sort chronologically from 2026 down to 2024
@@ -205,7 +206,7 @@ const AdminSchemesPage = () => {
 
     try {
       if (formMode === 'add') {
-        const res = await fetch('http://localhost:5000/api/schemes', {
+        const res = await fetch(`${API_BASE_URL}/api/schemes`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -225,7 +226,7 @@ const AdminSchemesPage = () => {
       } else {
         const targetId = formData.schemeId || formData._id;
         const res = await fetch(
-          `http://localhost:5000/api/schemes/${targetId}`,
+          `${API_BASE_URL}/api/schemes/${targetId}`,
           {
             method: 'PUT',
             headers: {
@@ -262,7 +263,7 @@ const AdminSchemesPage = () => {
     const targetId = schemeToDelete.schemeId || schemeToDelete._id;
     const authToken = getAuthToken();
     try {
-      const res = await fetch(`http://localhost:5000/api/schemes/${targetId}`, {
+      const res = await fetch(`${API_BASE_URL}/api/schemes/${targetId}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${authToken}`,

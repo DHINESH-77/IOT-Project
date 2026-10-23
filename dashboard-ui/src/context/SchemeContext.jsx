@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { API_BASE_URL } from '../config';
 
 const SchemeContext = createContext();
 
@@ -219,7 +220,7 @@ export const SchemeProvider = ({ children }) => {
   useEffect(() => {
     const fetchLiveSchemes = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/schemes');
+        const res = await fetch(`${API_BASE_URL}/api/schemes`);
         if (!res.ok) return;
         const json = await res.json();
         if (json.success && Array.isArray(json.data) && json.data.length > 0) {
