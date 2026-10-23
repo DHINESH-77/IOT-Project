@@ -466,7 +466,7 @@ const PublicLandingPage = () => {
 
           {/* Officer Portal CTA */}
           <button
-            onClick={() => setIsAdminModalOpen(true)}
+            onClick={() => navigate("admin/login")}
             className="group h-[52px] px-7 sm:px-9 rounded-full bg-white hover:bg-slate-50 text-slate-800 text-[15px] font-bold border border-slate-200/90 shadow-xs hover:shadow-md transition-all cursor-pointer active:scale-95 flex items-center justify-center gap-2.5 shrink-0"
           >
             <div className="w-6 h-6 rounded-full bg-[#EA580C]/10 group-hover:bg-[#EA580C] text-[#EA580C] group-hover:text-white flex items-center justify-center transition-colors shrink-0">

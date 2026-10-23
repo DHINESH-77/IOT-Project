@@ -115,8 +115,7 @@ const AdminContactPage = () => {
             {/* Clean Executive Visual Card (No Text Overlay) */}
             <div className="w-full rounded-2xl overflow-hidden bg-slate-100 shadow-sm border border-slate-200/80 aspect-[4/4] sm:aspect-[4/3] lg:aspect-[3/4]">
               <img
-                src="https://lh3.googleusercontent.com/aida/AEtjO1UwD47XhagMo--iF1XZWCi2cGQZXZprD8V5WX7QTeH-6k_RtY4xc6u8pVyba5fiwrOo__vQcdbrxvrro3SoPJ9q8lb5TATRDQ1cwXSq5u2NhJn2jQ858GqNbMVTMpzO8RsVwKQt_zkZZP0USFP6hoaHGSOTGAFzcK-xufKDhiUHpQwIP2GEK0zPtZW3d1IwakQUBt7eVoeCHO3DyE1M5u47PaltpRkwfkiMuUoOkCwoWHmqz3Bmlngz2MU"
-                alt="Executive governance desk"
+                src="../../public/contact_image.jpg"
                 className="w-full h-full object-cover object-center"
               />
             </div>
@@ -130,23 +129,23 @@ const AdminContactPage = () => {
                   <span>Direct Oversight</span>
                 </span>
                 <p className="text-sm sm:text-base font-semibold text-slate-900 font-mono">
-                  xxxxxx@xxxx.gov.in
+                  crivera@gmail.com
                 </p>
               </div>
 
               <div className="flex flex-col gap-1 pt-3 border-t border-slate-100">
                 <span className="text-[11px] font-bold uppercase tracking-widest text-slate-500 font-mono flex items-center gap-1.5">
                   <Phone className="w-3.5 h-3.5 text-slate-400" />
-                  <span>Confidential Line</span>
+                  <span>Phone Number</span>
                 </span>
                 <p className="text-sm font-semibold text-slate-800 font-mono">
-                  +91 XXXXX XXXXX
+                  +91 9876543210
                 </p>
               </div>
 
               <div className="flex items-center gap-2.5 pt-3 border-t border-slate-100 text-slate-500 text-xs font-semibold">
                 <Building className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                <span>District Administration Office · Tamil Nadu</span>
+                <span><b>Our services are accessible 24/7, ensuring seamless operational continuity.</b></span>
               </div>
 
             </div>
